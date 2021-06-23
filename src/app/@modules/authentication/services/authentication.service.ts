@@ -17,16 +17,7 @@ export class AuthenticationService {
   constructor(private api: ApiService, private store: Store) {}
 
   public login(data: LoginData) {
-    const form_params = {
-      grant_type: 'password',
-      client_id: environment.clientId,
-      client_secret: environment.clientSecret,
-      username: data.email,
-      password: data.password,
-      scope: '*',
-    };
-
-    return this.api.post('/oauth/authorize', { form_params }).pipe(
+    return this.api.post('login', data).pipe(
       map((data) => {
         return data;
       }),

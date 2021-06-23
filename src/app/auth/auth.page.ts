@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertService } from '../@modules/alert/services/alert.service';
 import { LoaderService } from '../@modules/alert/services/loader.service';
 import { AuthenticationService } from '../@modules/authentication';
@@ -12,21 +13,24 @@ import { AuthenticationService } from '../@modules/authentication';
 export class AuthPage implements OnInit {
   loginForm = new FormGroup({
     email: new FormControl(
-      '',
+      'cigogma@licenta.ro',
       Validators.compose([Validators.email, Validators.required])
     ),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('123456', Validators.required),
   });
 
   constructor(
     private authService: AuthenticationService,
     private alert: AlertService,
-    private loader: LoaderService
+    private loader: LoaderService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
 
   submit() {
-    this.authService.login(this.loginForm.getRawValue()).subscribe();
+    this.authService.login(this.loginForm.getRawValue()).subscribe(() => {
+      this.router.navigateByUrl('/tabs');
+    });
   }
 }
