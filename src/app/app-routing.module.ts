@@ -6,13 +6,30 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+      },
+      {
+        path: 'stations',
+        loadChildren: () =>
+          import('./stations/stations.module').then((m) => m.StationsModule),
+      },
+    ],
   },
   {
     path: 'auth',
     loadChildren: () =>
       import('./auth/auth.module').then((m) => m.AuthPageModule),
+  },
+  {
+    path: 'station-device',
+    loadChildren: () =>
+      import('./station-device/station-device.module').then(
+        (m) => m.StationDeviceModule
+      ),
   },
 ];
 @NgModule({

@@ -10,7 +10,7 @@ const routes: Routes = [
       {
         path: 'stations',
         loadChildren: () =>
-          import('../tab1/tab1.module').then((m) => m.Tab1PageModule),
+          import('../stations/stations.module').then((m) => m.StationsModule),
       },
       {
         path: 'profile',
@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/stations',
     pathMatch: 'full',
   },
 ];
