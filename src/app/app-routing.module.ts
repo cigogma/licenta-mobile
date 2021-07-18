@@ -31,6 +31,8 @@ const routes: Routes = [
         (m) => m.StationDeviceModule
       ),
   },
+  { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
+  { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
 ];
 @NgModule({
   imports: [

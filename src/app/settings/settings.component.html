@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Settings </ion-title>
+    <ion-buttons slot="end"> </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-avatar slot="start">
+      <img
+        src="https://gravatar.com/avatar/dba6bae8c566f9234542fb9cd9ada7741?d=identicon&f=y"
+      />
+    </ion-avatar>
+    <ion-label>Currant User</ion-label>
+  </ion-item>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label> Profile </ion-label>
+    </ion-list-header>
+    <ion-item routerLink="terms">
+      <ion-label> Terms and conditions </ion-label>
+    </ion-item>
+    <ion-item routerLink="terms">
+      <ion-label> Privacy policy </ion-label>
+    </ion-item>
+    <ion-list-header>
+      <ion-label> Authentication </ion-label>
+    </ion-list-header>
+    <ion-item button>
+      <ion-label> Change password </ion-label>
+    </ion-item>
+    <ion-item button>
+      <ion-label> Logout </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

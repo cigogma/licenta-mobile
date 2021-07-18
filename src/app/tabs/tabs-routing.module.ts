@@ -15,12 +15,12 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: () =>
-          import('../tab2/tab2.module').then((m) => m.Tab2PageModule),
+          import('../profile/profile.module').then((m) => m.ProfileModule),
       },
       {
         path: 'settings',
         loadChildren: () =>
-          import('../tab3/tab3.module').then((m) => m.Tab3PageModule),
+          import('../settings/settings.module').then((m) => m.SettingsModule),
       },
       {
         path: '',

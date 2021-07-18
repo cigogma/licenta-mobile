@@ -5,8 +5,11 @@
     </ion-buttons>
     <ion-title> Station #1234 </ion-title>
     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      <ion-button (click)="remove()">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="./edit">
+        <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

@@ -10,6 +10,7 @@ import { CreatePage } from './pages/create/create.page';
 import { EditPage } from './pages/edit/edit.page';
 import { StationFormComponent } from './components/station-form/station-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StationItemComponent } from './components/station-item/station-item.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CreatePage,
     EditPage,
     StationFormComponent,
+    StationItemComponent,
   ],
   imports: [
     CommonModule,
