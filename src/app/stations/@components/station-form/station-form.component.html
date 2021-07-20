@@ -1,7 +1,7 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="submit()">
   <ion-item>
     <ion-label>Alias</ion-label>
-    <ion-input></ion-input>
+    <ion-input formControlName="name"></ion-input>
   </ion-item>
   <ion-button type="submit" expand="full"> Submit </ion-button>
 </form>

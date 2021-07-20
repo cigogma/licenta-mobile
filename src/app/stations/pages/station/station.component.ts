@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { from } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { from, Observable } from 'rxjs';
+import { finalize, first, switchMap, tap } from 'rxjs/operators';
+import { Station, StationsService } from 'src/app/@modules/station';
 
 @Component({
   selector: 'app-station',
@@ -9,7 +11,15 @@ import { switchMap, tap } from 'rxjs/operators';
   styleUrls: ['./station.component.scss'],
 })
 export class StationComponent implements OnInit {
-  constructor(private alertController: AlertController) {}
+  station$: Observable<Station>;
+
+  constructor(
+    private station: StationsService,
+    private activatedRoute: ActivatedRoute,
+    private route: Router,
+    private loading: LoadingController,
+    private alertController: AlertController
+  ) {}
 
   ngOnInit(): void {}
 
@@ -37,5 +47,20 @@ export class StationComponent implements OnInit {
     });
 
     await alert.present();
+  }
+  async submitDelete() {
+    const loader = await this.loading.create({ message: 'Loading...' });
+    loader.present();
+    this.station$
+      .pipe(
+        first(),
+        switchMap((station) => this.station.delete(station.id)),
+        finalize(() => loader.dismiss())
+      )
+      .subscribe((data) => {
+        this.route.navigate(['..'], {
+          relativeTo: this.activatedRoute,
+        });
+      });
   }
 }

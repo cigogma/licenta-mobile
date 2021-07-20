@@ -17,6 +17,7 @@ import { AuthenticationModule } from './@modules/authentication';
 import { ApiService } from './services/api.service';
 import { AlertModule } from './@modules/alert/alert.module';
 import { HttpClientModule } from '@angular/common/http';
+import { StationModule } from './@modules/station';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     AlertModule.forRoot(),
     IonicModule.forRoot({ mode: 'ios' }),
     AppRoutingModule,
+    StationModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([AppEffects]),

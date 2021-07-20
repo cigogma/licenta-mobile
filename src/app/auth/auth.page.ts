@@ -13,10 +13,10 @@ import { AuthenticationService } from '../@modules/authentication';
 export class AuthPage implements OnInit {
   loginForm = new FormGroup({
     email: new FormControl(
-      'cigogma@licenta.ro',
+      'razvan@licenta.ro',
       Validators.compose([Validators.email, Validators.required])
     ),
-    password: new FormControl('123456', Validators.required),
+    password: new FormControl('parola123', Validators.required),
   });
 
   constructor(

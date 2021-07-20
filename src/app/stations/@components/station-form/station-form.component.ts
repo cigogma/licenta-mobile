@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Station } from 'src/app/@modules/station/models/station.model';
+import { Station } from 'src/app/@modules/station';
 
 @Component({
   selector: 'app-station-form',
@@ -10,11 +10,18 @@ import { Station } from 'src/app/@modules/station/models/station.model';
 export class StationFormComponent implements OnInit {
   @Input()
   station: Station;
+  @Output()
+  formSubmit = new EventEmitter();
 
   form: FormGroup = new FormGroup({
-    alias: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
   });
   constructor() {}
 
   ngOnInit(): void {}
+
+  submit() {
+    const data = this.form.getRawValue();
+    this.formSubmit.emit(new CustomEvent('formSubmit', { detail: data }));
+  }
 }

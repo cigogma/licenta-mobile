@@ -79,7 +79,9 @@ export class ChartComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.randomize();
+  }
 
   public randomize(): void {
     for (let i = 0; i < this.lineChartData.length; i++) {

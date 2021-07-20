@@ -33,7 +33,7 @@ export enum RequestType {
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost/api/';
+  private apiUrl = 'https://cigogma.site/api/';
   private nativeHTTP = false;
   constructor(
     private http: HttpClient,
