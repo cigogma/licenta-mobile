@@ -17,6 +17,23 @@ const routes: Routes = [
         loadChildren: () =>
           import('./stations/stations.module').then((m) => m.StationsModule),
       },
+      {
+        path: 'station-devices',
+        loadChildren: () =>
+          import('./station-devices/station-devices.module').then(
+            (m) => m.StationDevicesModule
+          ),
+      },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./settings/settings.module').then((m) => m.SettingsModule),
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./profile/profile.module').then((m) => m.ProfileModule),
+      },
     ],
   },
   {
@@ -25,14 +42,12 @@ const routes: Routes = [
       import('./auth/auth.module').then((m) => m.AuthPageModule),
   },
   {
-    path: 'station-device',
+    path: 'station-devices',
     loadChildren: () =>
-      import('./station-device/station-device.module').then(
-        (m) => m.StationDeviceModule
+      import('./station-devices/station-devices.module').then(
+        (m) => m.StationDevicesModule
       ),
   },
-  { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
-  { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
 ];
 @NgModule({
   imports: [

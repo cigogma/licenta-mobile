@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs"> </ion-back-button>
+    </ion-buttons>
+    <ion-title> Device #1234 </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let item of [12321, 2521, 242]">
+    <ion-card-header>
+      <ion-card-title> Device #{{ item }} </ion-card-title>
+    </ion-card-header>
+    <ion-card-content> </ion-card-content>
+  </ion-card>
+</ion-content>
