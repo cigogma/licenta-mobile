@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { CreatePage } from './pages/create/create.page';
-import { EditPage } from './pages/edit/edit.page';
-import { StationComponent } from './pages/station/station.component';
-import { StationsComponent } from './stations.component';
+import {
+  StationComponent,
+  StationsComponent,
+  EditPage,
+  CreatePage,
+} from './pages';
 
 const routes: Routes = [
   { path: '', component: StationsComponent },
