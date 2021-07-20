@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 import { from, Observable } from 'rxjs';
 import { finalize, first, switchMap, tap } from 'rxjs/operators';
-import { Station, StationsService } from 'src/app/@modules/station';
+import {
+  Station,
+  StationSelectors,
+  StationsService,
+} from 'src/app/@modules/station';
 
 @Component({
   selector: 'app-station',
@@ -17,11 +22,18 @@ export class StationComponent implements OnInit {
     private station: StationsService,
     private activatedRoute: ActivatedRoute,
     private route: Router,
+    private store: Store,
     private loading: LoadingController,
     private alertController: AlertController
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.station$ = this.activatedRoute.params.pipe(
+      switchMap(({ station }) => {
+        return this.store.select(StationSelectors.selectId(station));
+      })
+    );
+  }
 
   async remove() {
     const alert = await this.alertController.create({
@@ -33,14 +45,11 @@ export class StationComponent implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
         },
         {
           text: 'Okay',
           handler: () => {
-            console.log('Confirm Okay');
+            this.submitDelete();
           },
         },
       ],

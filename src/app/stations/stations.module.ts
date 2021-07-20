@@ -17,6 +17,7 @@ import {
   StationFormComponent,
   StationItemComponent,
 } from './@components';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {
   imports: [
     CommonModule,
     IonicModule,
+    MomentModule,
     StationsRoutingModule,
     ReactiveFormsModule,
   ],

@@ -18,7 +18,15 @@ export class StationFormComponent implements OnInit {
   });
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.station) {
+      console.log(this.station);
+      const { name } = this.station;
+      this.form.patchValue({
+        name,
+      });
+    }
+  }
 
   submit() {
     const data = this.form.getRawValue();

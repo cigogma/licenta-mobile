@@ -1,2 +1,3 @@
-import * as stationReducer from './station.reducer';
-export { stationReducer };
+import * as fromStations from './station.reducer';
+import * as fromStationApiKeys from './station-api-key.reducer';
+export { fromStations, fromStationApiKeys };

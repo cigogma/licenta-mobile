@@ -3,4 +3,5 @@ export interface Station {
   name: string;
   mac: string;
   keys: string[];
+  updated_at: string;
 }

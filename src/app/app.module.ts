@@ -18,6 +18,7 @@ import { ApiService } from './services/api.service';
 import { AlertModule } from './@modules/alert/alert.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StationModule } from './@modules/station';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { StationModule } from './@modules/station';
     IonicModule.forRoot({ mode: 'ios' }),
     AppRoutingModule,
     StationModule,
+    MomentModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([AppEffects]),

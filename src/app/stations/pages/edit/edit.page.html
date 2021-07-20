@@ -7,6 +7,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding-top">
-  <app-station-form> </app-station-form>
+<ion-content class="ion-padding">
+  <app-station-form
+    (formSubmit)="submit($event)"
+    *ngIf="station$|async"
+    [station]="station$|async"
+  >
+  </app-station-form>
+  <div>
+    <h2>Api keys</h2>
+    <ion-item-sliding *ngFor="let key of keys$ | async">
+      <ion-item>
+        <ion-label position="stacked">{{key.name}}</ion-label>
+        <ion-item readonly>{{key.token}}</ion-item>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option (click)="copyToClipboard(key)">
+          <ion-icon name="copy-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteKey(key)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </div>
 </ion-content>
