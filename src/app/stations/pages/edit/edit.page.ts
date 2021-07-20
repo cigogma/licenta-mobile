@@ -8,6 +8,8 @@ import {
   Station,
   StationApiKey,
   StationApiKeyActions,
+  StationApiKeySelectors,
+  StationApiKeysService,
   StationSelectors,
   StationsService,
 } from 'src/app/@modules/station';
@@ -24,6 +26,7 @@ export class EditPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private route: Router,
     private store: Store,
+    private keyService: StationApiKeysService,
     private toast: ToastController,
     private loading: LoadingController
   ) {}
@@ -37,14 +40,15 @@ export class EditPage implements OnInit {
     this.station$.pipe(take(1)).subscribe((station) => {
       this.store.dispatch(StationApiKeyActions.fetchStation({ station }));
     });
-    this.keys$ = of([
-      {
-        id: 1,
-        name: 'test',
-        token: '1Eyks8HYr0VZNW7X4xafCvDjakf7GeXwJorzje3Ea',
-        station_id: 1,
-      },
-    ]);
+    this.keys$ = this.station$
+      .pipe(take(1))
+      .pipe(
+        switchMap((station) =>
+          this.store.select(
+            StationApiKeySelectors.selectAllFromStation(station.id)
+          )
+        )
+      );
   }
   async submit(event: CustomEvent) {
     const loader = await this.loading.create({ message: 'Loading...' });
@@ -70,6 +74,38 @@ export class EditPage implements OnInit {
     });
     await toast.present();
   }
-  generateKey(name: string) {}
-  deleteKey(key: StationApiKey) {}
+  newKey() {
+    this.generateKey(Date.now() + '_station');
+  }
+  async generateKey(name: string) {
+    const loader = await this.loading.create({ message: 'Loading...' });
+    loader.present();
+    const toast = await this.toast.create({
+      message: 'Key generated',
+      duration: 1000,
+    });
+    this.station$
+      .pipe(
+        take(1),
+        switchMap((station) => this.keyService.create(station, name)),
+        finalize(() => loader.dismiss())
+      )
+      .subscribe(() => {
+        toast.present();
+      });
+  }
+  async deleteKey(key: StationApiKey) {
+    const loader = await this.loading.create({ message: 'Loading...' });
+    loader.present();
+    const toast = await this.toast.create({
+      message: 'Key deleted',
+      duration: 1000,
+    });
+    this.keyService
+      .delete(key)
+      .pipe(finalize(() => loader.dismiss()))
+      .subscribe(() => {
+        toast.present();
+      });
+  }
 }
