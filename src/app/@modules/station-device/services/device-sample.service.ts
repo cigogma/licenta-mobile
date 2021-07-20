@@ -5,7 +5,7 @@ import { StationDevice } from '../models';
 @Injectable({
   providedIn: 'root',
 })
-export class StationDeviceService {
+export class DeviceSampleService {
   constructor(private api: ApiService) {}
 
   fetchSample(
