@@ -1,0 +1,21 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>
+      {{ sensor }}
+    </ion-card-subtitle>
+    <ion-card-title> {{ period.label }} </ion-card-title>
+  </ion-card-header>
+  <app-chart
+    *ngIf="result$ | async as result; else loader"
+    [data]="result.values"
+    [labels]="result.labels"
+  >
+  </app-chart>
+  <ng-template #loader>
+    <ion-card-content>
+      <ion-title>
+        <ion-spinner></ion-spinner>
+      </ion-title>
+    </ion-card-content>
+  </ng-template>
+</ion-card>

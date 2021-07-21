@@ -3,19 +3,22 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs"> </ion-back-button>
     </ion-buttons>
-    <ion-title> Device #1234 </ion-title>
+    <ion-title *ngIf="device$ | async as device">
+      Device #{{ device.id }}
+    </ion-title>
   </ion-toolbar>
   <ion-buttons slot="end">
     <ion-button> </ion-button>
   </ion-buttons>
 </ion-header>
-<ion-content>
-  <ion-card *ngFor="let item of [1, 2, 3]">
-    <ion-card-header>
-      <ion-card-title> Label </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <app-chart> </app-chart>
-    </ion-card-content>
-  </ion-card>
+<ion-content *ngIf="device$ | async as device">
+  <div *ngFor="let sensor of device.sensors">
+    <app-sensor-chart
+      *ngFor="let period of periods"
+      [device]="device"
+      [sensor]="sensor.name"
+      [period]="period"
+    >
+    </app-sensor-chart>
+  </div>
 </ion-content>

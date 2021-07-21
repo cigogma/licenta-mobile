@@ -21,7 +21,7 @@
   <app-station-device-item
     *ngFor="let a of stationDevices$ | async"
     [device]="a"
-    routerLink="/station-devices"
+    [routerLink]="['/', 'station-devices', a.id]"
   >
   </app-station-device-item>
 </ion-content>

@@ -6,12 +6,14 @@ import { IonicModule } from '@ionic/angular';
 import { ChartsModule } from 'ng2-charts';
 import { StationDeviceComponent, StationDevicesComponent } from './pages';
 import { ChartComponent } from './@components';
+import { SensorChartComponent } from './@components/sensor-chart/sensor-chart.component';
 
 @NgModule({
   declarations: [
     StationDevicesComponent,
     StationDeviceComponent,
     ChartComponent,
+    SensorChartComponent,
   ],
   imports: [
     CommonModule,

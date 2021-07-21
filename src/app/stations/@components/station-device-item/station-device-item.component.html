@@ -10,8 +10,10 @@
   <ion-card-content>
     <ion-list>
       <ion-list-header> <ion-label> Sensors </ion-label> </ion-list-header>
-      <ion-item> <ion-label>Temperature </ion-label> 38</ion-item>
-      <ion-item> <ion-label> Humidity </ion-label> 50%</ion-item>
+      <ion-item *ngFor="let sensor of device.sensors">
+        <ion-label> {{ sensor.name }} </ion-label>
+        {{ sensor.lastValue }}
+      </ion-item>
     </ion-list>
   </ion-card-content>
 </ion-card>

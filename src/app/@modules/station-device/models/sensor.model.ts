@@ -1,4 +1,4 @@
 export interface DeviceSensor {
-  target: string;
+  name: string;
   lastValue?: number;
 }
