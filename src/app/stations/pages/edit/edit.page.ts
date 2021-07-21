@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
+import {
+  LoadingController,
+  ModalController,
+  ToastController,
+} from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { filter, finalize, first, switchMap, take } from 'rxjs/operators';
@@ -13,6 +17,7 @@ import {
   StationSelectors,
   StationsService,
 } from 'src/app/@modules/station';
+import { KeyModalComponent } from '../../@modals/key-modal/key-modal.component';
 
 @Component({
   templateUrl: './edit.page.html',
@@ -28,6 +33,7 @@ export class EditPage implements OnInit {
     private store: Store,
     private keyService: StationApiKeysService,
     private toast: ToastController,
+    private modalController: ModalController,
     private loading: LoadingController
   ) {}
   ngOnInit(): void {
@@ -66,16 +72,18 @@ export class EditPage implements OnInit {
       });
   }
 
-  async copyToClipboard(key: StationApiKey) {
-    await navigator.clipboard.writeText(key.token);
-    const toast = await this.toast.create({
-      message: 'Text copied to clipboard',
-      duration: 1000,
-    });
-    await toast.present();
-  }
   newKey() {
     this.generateKey(Date.now() + '_station');
+  }
+  async presentKeyModal(token, plainTextKey) {
+    const modal = await this.modalController.create({
+      component: KeyModalComponent,
+      componentProps: {
+        token,
+        plainTextKey,
+      },
+    });
+    modal.present();
   }
   async generateKey(name: string) {
     const loader = await this.loading.create({ message: 'Loading...' });
@@ -90,8 +98,9 @@ export class EditPage implements OnInit {
         switchMap((station) => this.keyService.create(station, name)),
         finalize(() => loader.dismiss())
       )
-      .subscribe(() => {
-        toast.present();
+      .subscribe(({ token, plainTextKey }) => {
+        this.presentKeyModal(token, plainTextKey);
+        // this.toast.present();
       });
   }
   async deleteKey(key: StationApiKey) {

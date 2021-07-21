@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Api Key </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()"> Close </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked"> ID </ion-label>
+      {{ token.id }}
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      {{ token.name }}
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked"> Token </ion-label>
+      {{ plainTextKey }}
+    </ion-item>
+    <ion-button (click)="copyToClipboard(plainTextKey)" expand="block">
+      Copy Key
+    </ion-button>
+  </ion-list>
+</ion-content>

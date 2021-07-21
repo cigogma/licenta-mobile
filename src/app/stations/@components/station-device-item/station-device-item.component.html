@@ -3,17 +3,15 @@
     <ion-buttons>
       <ion-back-button> </ion-back-button>
     </ion-buttons>
-    <ion-card-subtitle>Device #1234</ion-card-subtitle>
-    <ion-card-title>Alias</ion-card-title>
+    <ion-card-subtitle>#{{ device.id }}</ion-card-subtitle>
+    <ion-card-title>Device</ion-card-title>
   </ion-card-header>
 
   <ion-card-content>
     <ion-list>
-      <ion-list-header> <ion-label>List Header</ion-label> </ion-list-header>
-      <ion-item> Input </ion-item>
-      <ion-list-header> <ion-label>Recors </ion-label> </ion-list-header>
-      <ion-item> Temperature </ion-item>
-      <ion-item> <ion-label> Humidity </ion-label> </ion-item>
+      <ion-list-header> <ion-label> Sensors </ion-label> </ion-list-header>
+      <ion-item> <ion-label>Temperature </ion-label> 38</ion-item>
+      <ion-item> <ion-label> Humidity </ion-label> 50%</ion-item>
     </ion-list>
   </ion-card-content>
 </ion-card>

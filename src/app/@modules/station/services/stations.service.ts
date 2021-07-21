@@ -12,12 +12,9 @@ export class StationsService {
   constructor(private api: ApiService, private store: Store) {}
 
   public fetch() {
-    return this.api.get('stations').pipe(
-      map((data: any) => data.stations as Station[]),
-      tap((stations) => {
-        this.store.dispatch(StationActions.loadStations({ stations }));
-      })
-    );
+    return this.api
+      .get('stations')
+      .pipe(map((data: any) => data.stations as Station[]));
   }
 
   public delete(id: number) {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { StationDevice } from 'src/app/@modules/station-device';
 
 @Component({
   selector: 'app-station-device-item',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./station-device-item.component.scss'],
 })
 export class StationDeviceItemComponent implements OnInit {
+  @Input()
+  device: StationDevice;
+
   constructor() {}
 
   ngOnInit(): void {}

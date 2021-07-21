@@ -19,6 +19,7 @@ import { AlertModule } from './@modules/alert/alert.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StationModule } from './@modules/station';
 import { MomentModule } from 'ngx-moment';
+import { StationDeviceModule } from './@modules/station-device';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { MomentModule } from 'ngx-moment';
     IonicModule.forRoot({ mode: 'ios' }),
     AppRoutingModule,
     StationModule,
+    StationDeviceModule,
     MomentModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],

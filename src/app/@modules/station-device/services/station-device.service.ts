@@ -12,15 +12,17 @@ import { StationDevice } from '../models';
 export class StationDeviceService {
   constructor(private api: ApiService, private store: Store) {}
 
-  public fetch(station: Station) {
+  public fetchStation(station: Station) {
     return this.api
-      .get(`stations/${station.id}/`)
-      .pipe(map((data: any) => data.station_device as StationDevice[]));
+      .get(`stations/${station.id}/devices`)
+      .pipe(map((data: any) => data.station_devices as StationDevice[]));
   }
 
   public delete(stationDevice: StationDevice) {
     return this.api
-      .delete(`stations/${stationDevice.station_id}/device/${stationDevice.id}`)
+      .delete(
+        `stations/${stationDevice.station_id}/devices/${stationDevice.id}`
+      )
       .pipe(
         tap((station) => {
           this.store.dispatch(

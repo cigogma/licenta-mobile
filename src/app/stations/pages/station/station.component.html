@@ -3,7 +3,9 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title> Station #1234 </ion-title>
+    <ion-title *ngIf="station$ | async as station">
+      Station #{{ station.id }}
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="remove()">
         <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
@@ -17,7 +19,8 @@
 
 <ion-content>
   <app-station-device-item
-    *ngFor="let a of [1, 2, 3, 4, 5]"
+    *ngFor="let a of stationDevices$ | async"
+    [device]="a"
     routerLink="/station-devices"
   >
   </app-station-device-item>

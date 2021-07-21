@@ -18,8 +18,10 @@ import {
   StationItemComponent,
 } from './@components';
 import { MomentModule } from 'ngx-moment';
+import { KeyModalComponent } from './@modals/key-modal/key-modal.component';
 
 @NgModule({
+  entryComponents: [KeyModalComponent],
   declarations: [
     StationsComponent,
     StationComponent,
@@ -28,6 +30,7 @@ import { MomentModule } from 'ngx-moment';
     EditPage,
     StationFormComponent,
     StationItemComponent,
+    KeyModalComponent,
   ],
   imports: [
     CommonModule,

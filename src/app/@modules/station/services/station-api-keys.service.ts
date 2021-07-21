@@ -39,10 +39,15 @@ export class StationApiKeysService {
 
   public create(station: Station, name: string) {
     return this.api.post(`stations/${station.id}/keys`, { name }).pipe(
-      map((data: any) => data.station_api_key as StationApiKey),
-      tap((stationApiKey) => {
+      map((data: any) => {
+        return {
+          token: data.station_api_key as StationApiKey,
+          plainTextKey: data.plain_text_key as string,
+        };
+      }),
+      tap(({ token }) => {
         this.store.dispatch(
-          StationApiKeyActions.addStationApiKey({ stationApiKey })
+          StationApiKeyActions.addStationApiKey({ stationApiKey: token })
         );
       })
     );
