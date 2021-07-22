@@ -23,6 +23,9 @@ export class ChartComponent implements OnInit {
         {
           id: 'y-axis-0',
           position: 'left',
+          ticks: {
+            beginAtZero: true,
+          },
         },
         // {
         //   id: 'y-axis-1',

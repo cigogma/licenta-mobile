@@ -32,17 +32,22 @@ export class StationDeviceService {
       );
   }
 
-  public update(id: number, data: Partial<Station>) {
-    // return this.api.put(`stations/${id}`, data).pipe(
-    //   map((data: any) => data.station as Station),
-    //   tap((station) => {
-    //     this.store.dispatch(
-    //       StationDeviceActions.updateStation({
-    //         station: { changes: station, id },
-    //       })
-    //     );
-    //   })
-    // );
+  public update(stationDevice: StationDevice, data: Partial<StationDevice>) {
+    return this.api
+      .put(
+        `stations/${stationDevice.station_id}/devices/${stationDevice.id}`,
+        data
+      )
+      .pipe(
+        map((data: any) => data.station_device as StationDevice),
+        tap((stationDevice) => {
+          this.store.dispatch(
+            StationDeviceActions.updateStationDevice({
+              stationDevice: { changes: stationDevice, id: stationDevice.id },
+            })
+          );
+        })
+      );
   }
 
   // public create(data: Partial<Station>) {

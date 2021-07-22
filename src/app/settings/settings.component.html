@@ -8,14 +8,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <ion-item>
     <ion-avatar slot="start">
       <img
         src="https://gravatar.com/avatar/dba6bae8c566f9234542fb9cd9ada7741?d=identicon&f=y"
       />
     </ion-avatar>
-    <ion-label>Currant User</ion-label>
+    <ion-label>Current User</ion-label>
   </ion-item>
 
   <ion-list>
@@ -25,8 +25,30 @@
     <ion-item routerLink="terms">
       <ion-label> Terms and conditions </ion-label>
     </ion-item>
-    <ion-item routerLink="terms">
+    <ion-item routerLink="privacy">
       <ion-label> Privacy policy </ion-label>
+    </ion-item>
+    <ion-list-header>
+      <ion-label> Notifications </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label> Emergency </ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label> Info </ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label> Triggers </ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+    <ion-list-header>
+      <ion-label> Appearance </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label> Dark </ion-label>
+      <ion-toggle color="dark"></ion-toggle>
     </ion-item>
     <ion-list-header>
       <ion-label> Authentication </ion-label>

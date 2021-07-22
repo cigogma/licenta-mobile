@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <form [formGroup]="loginForm" (ngSubmit)="submit()">
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
@@ -23,15 +23,6 @@
       ></ion-input>
     </ion-item>
 
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="danger" expand="block">
-          Sign In
-        </ion-button>
-        <!-- <a [routerLink]="['/forgot-password']" class="small-text">
-          Forgot Password?
-        </a> -->
-      </ion-col>
-    </ion-row>
+    <ion-button type="submit" expand="block"> Sign In </ion-button>
   </form>
 </ion-content>

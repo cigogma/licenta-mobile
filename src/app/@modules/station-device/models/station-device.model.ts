@@ -5,7 +5,7 @@ import { DeviceSensor } from './sensor.model';
 export interface StationDevice {
   id: number;
   station_id: number;
-  alias: string;
+  name: string;
   mac: string;
   sensors: DeviceSensor[];
 }
